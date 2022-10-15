@@ -32,10 +32,7 @@ public class Contrato {
     private String validarTipoNotificacao(String tipoNotificacao) {
         return "a fazer...";
     }
-
-    private String registrarEndereco(String[] dados) {
-        return "a fazer...";
-    }
     
+
 }
 
