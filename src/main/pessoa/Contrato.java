@@ -17,7 +17,7 @@ public class Contrato {
         return "a fazer...";
     }
 
-    private String determinarFusoHorario(enum fusoHorario) {
+    private String determinarFusoHorario(String fusoHorario) {
         return "a fazer...";
     }
 
@@ -32,7 +32,7 @@ public class Contrato {
     private String validarTipoNotificacao(String tipoNotificacao) {
         return "a fazer...";
     }
-    
+
 
 }
 
