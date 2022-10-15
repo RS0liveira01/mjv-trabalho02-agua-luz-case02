@@ -26,5 +26,5 @@ public class Endereco {
     private String validarPais(String pais) {
         return "a fazer..."
     }
-    
+
 }
