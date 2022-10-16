@@ -32,4 +32,28 @@ public class Contrato {
     }
 
     private TIPONOTIFICACAO validarTipoNotificacao(String tipoNotificacao) { return TIPONOTIFICACAO.SMS; }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public String getProtocolo() {
+        return protocolo;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public FUSOHORARIO getFusoHorario() {
+        return fusoHorario;
+    }
+
+    public TIPOSERVICO getTipoServico() {
+        return tipoServico;
+    }
+
+    public TIPONOTIFICACAO getTipoNotificacao() {
+        return tipoNotificacao;
+    }
 }
