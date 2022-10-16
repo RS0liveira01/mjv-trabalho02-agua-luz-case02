@@ -23,8 +23,12 @@ public class Endereco {
         return "a fazer...";
     }
 
-    private String validarPais(String pais) {
-        return "a fazer..."
+    private String validarUf(String uf) {
+        return "a fazer...";
+    }
+
+    private PAIS validarPais(String pais) {
+        return PAIS.BR;
     }
 
 }
