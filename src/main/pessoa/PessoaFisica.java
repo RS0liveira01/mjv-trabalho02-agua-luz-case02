@@ -17,5 +17,11 @@ public class PessoaFisica extends Pessoa {
         return "a fazer...";
     }
 
+    public String getCpf() {
+        return cpf;
+    }
 
+    public String getRg() {
+        return rg;
+    }
 }
