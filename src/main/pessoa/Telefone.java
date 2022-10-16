@@ -1,11 +1,8 @@
 package pessoa;
 
-
-};
 public class Telefone {
     private String ddd;
     private String numero;
-    private DDI ddi;
 
     public Telefone(String telefone) {
         // a fazer...
@@ -18,10 +15,5 @@ public class Telefone {
     private String validarDdd(String ddd) {
         return "a fazer...";
     }
-
-    private String validarDdi(String ddi) {
-        return "a fazer...";
-    }
-
 }
 
