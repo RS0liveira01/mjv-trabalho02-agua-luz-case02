@@ -23,8 +23,15 @@ public abstract class Pessoa {
         // A fazer...
     }
 
+    public String getNome() {
+        return nome;
+    }
 
+    public ArrayList<Telefone> getTelefones() {
+        return telefones;
+    }
 
-
-
+    public ArrayList<Contrato> getContratos() {
+        return contratos;
+    }
 }
