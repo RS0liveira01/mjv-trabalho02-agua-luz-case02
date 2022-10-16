@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public abstract class Pessoa {
     private String nome;
-    private ArrayList<Telefone> telefone;
-    private ArrayList<Contrato> contrato;
+    private ArrayList<Telefone> telefones;
+    private ArrayList<Contrato> contratos;
 
     protected Pessoa(String nome) {
         this.nome = validarNome(nome);
@@ -16,11 +16,11 @@ public abstract class Pessoa {
     }
 
     protected void registrarContrato(String[] dados){
-
+        // A fazer...
     }
 
     protected void registrarTelefone(String telefone) {
-
+        // A fazer...
     }
 
 
