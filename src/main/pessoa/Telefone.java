@@ -15,5 +15,13 @@ public class Telefone {
     private String validarDdd(String ddd) {
         return "a fazer...";
     }
+
+    public String getDdd() {
+        return ddd;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
 }
 
