@@ -9,7 +9,9 @@ public class PessoaJuridica extends Pessoa {
         // A fazer...
     }
 
-    private String validarCnpj(String cnpj) {
-        return "A fazer..."
+    private String validarCnpj(String cnpj) { return "A fazer..."; }
+
+    public String getCnpj() {
+        return cnpj;
     }
 }
