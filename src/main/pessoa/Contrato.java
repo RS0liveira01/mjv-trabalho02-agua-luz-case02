@@ -11,7 +11,7 @@ public class Contrato {
     private TIPOSERVICO tipoServico;
     private TIPONOTIFICACAO tipoNotificacao;
 
-    protected Contrato(String[] cadastro) {
+    protected Contrato(String[] dados) {
         // a fazer...
     }
 
