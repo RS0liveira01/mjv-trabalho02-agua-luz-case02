@@ -1,6 +1,7 @@
 package bancoDados;
 
 import errors.*;
+import pessoa.Contrato;
 import pessoa.Pessoa;
 import pessoa.PessoaFisica;
 import pessoa.PessoaJuridica;
@@ -91,6 +92,13 @@ public class PseudoBancoDadosPessoa {
                     throw new DuplicatedCnpjException();
             }
         });
+    }
+
+    private void validarDuplicidadeContrato(String protocolo) {
+        for(Pessoa pessoa : this.pessoas)
+            for(Contrato contrato : pessoa.getContratos())
+                if(Objects.equals(contrato.getProtocolo(), protocolo))
+                    throw new DuplicatedProtocoloException();
     }
 
     public ArrayList<Pessoa> getPessoas() {
