@@ -61,6 +61,6 @@ public class PseudoBancoDadosPessoa {
     }
 
     public ArrayList<Pessoa> getPessoas() {
-        return pessoas;
+        return this.pessoas;
     }
 }
