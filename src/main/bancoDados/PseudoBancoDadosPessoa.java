@@ -60,6 +60,19 @@ public class PseudoBancoDadosPessoa {
         throw new PessoaNotFoundException();
     }
 
+    private void validarDuplicidadePessoaFisica(PessoaFisica novaPessoaFisica) {
+        this.pessoas.forEach((pessoa) -> {
+            if (pessoa instanceof PessoaFisica) {
+                PessoaFisica pessoaFisica = (PessoaFisica) pessoa;
+
+                if (Objects.equals(pessoaFisica.getCpf(), novaPessoaFisica.getCpf()))
+                    throw new DuplicatedCpfException();
+
+                if (Objects.equals(pessoaFisica.getRg(), novaPessoaFisica.getRg()))
+                    throw new DuplicatedRgException();
+            }
+        }
+    }
     public ArrayList<Pessoa> getPessoas() {
         return this.pessoas;
     }
