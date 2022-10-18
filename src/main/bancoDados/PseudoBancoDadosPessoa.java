@@ -11,8 +11,16 @@ import java.util.Objects;
 public class PseudoBancoDadosPessoa {
     ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 
-    public void registrarPessoa(Pessoa pessoa) {
-        this.pessoas.add(pessoa);
+    public void registrarPessoa(Pessoa novaPessoa) {
+        if (novaPessoa instanceof PessoaFisica) {
+            this.validarDuplicidadePessoaFisica((PessoaFisica) novaPessoa);
+        } else if (novaPessoa instanceof PessoaJuridica) {
+            this.validarDuplicidadePessoaFisica((PessoaFisica) novaPessoa);
+        } else {
+            throw new UnsuportedPessoaImplementationException();
+        }
+
+        this.pessoas.add(novaPessoa);
     }
 
     public Pessoa getPessoaPorNome(String nome) {
