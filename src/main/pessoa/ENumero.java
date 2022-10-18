@@ -1,12 +1,12 @@
 package pessoa;
 
-public static class ENumero (){
+public class ENumero {
     public static Boolean verificaString (String texto) {
         try {
             Double.parseDouble(texto);
             return true;
         }
-        catch () {
+        catch (Exception e) {
             return false;
         }
     }
