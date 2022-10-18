@@ -24,6 +24,17 @@ public class PseudoBancoDadosPessoa {
         this.pessoas.add(novaPessoa);
     }
 
+    public void registrarContrato(Pessoa pessoaContratante, String[] dadosContrato) {
+        this.validarDuplicidadeContrato(dadosContrato[9]);
+
+        int posicaoPessoaContratante = this.pessoas.indexOf(pessoaContratante);
+
+        if(posicaoPessoaContratante == -1)
+            throw new PessoaNotFoundException();
+
+        this.pessoas.get(posicaoPessoaContratante).registrarContrato(dadosContrato);
+    }
+
     public Pessoa getPessoaPorNome(String nome) {
         // Perguntar porque equals e não ==
         for(Pessoa pessoa : this.pessoas)
