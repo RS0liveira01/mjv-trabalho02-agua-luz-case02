@@ -26,7 +26,7 @@ public class PseudoBancoDadosPessoa {
 
     public void registrarContrato(Pessoa pessoaContratante, String[] dadosContrato) {
         if(dadosContrato.length != 15)
-            throw new InvalidDadosException();
+            throw new InvalidDadosContratoException();
 
         this.validarDuplicidadeContrato(dadosContrato[9]);
 
