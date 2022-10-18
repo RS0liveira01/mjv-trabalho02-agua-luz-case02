@@ -23,7 +23,16 @@ public class PseudoBancoDadosPessoa {
         throw new PessoaNotFoundException();
     }
 
-        return this.pessoas.get(indicePesquisa);
+    public PessoaFisica getPessoaFisicaPorCpf(String cpf) {
+        for(int i = 0; i < this.pessoas.size(); i++)
+            if(this.pessoas.get(i) instanceof PessoaFisica) {
+                PessoaFisica pessoaFisica = (PessoaFisica) this.pessoas.get(i);
+
+                if(Objects.equals(pessoaFisica.getCpf(), cpf))
+                    return pessoaFisica;
+            }
+
+        throw new PessoaNotFoundException();
     }
 
     public ArrayList<Pessoa> getPessoas() {
