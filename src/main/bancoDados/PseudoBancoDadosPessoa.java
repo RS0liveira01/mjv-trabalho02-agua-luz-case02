@@ -35,6 +35,18 @@ public class PseudoBancoDadosPessoa {
         throw new PessoaNotFoundException();
     }
 
+    public PessoaFisica getPessoaFisicaPorRG(String rg) {
+        for(int i = 0; i < this.pessoas.size(); i++)
+            if(this.pessoas.get(i) instanceof PessoaFisica) {
+                PessoaFisica pessoaFisica = (PessoaFisica) this.pessoas.get(i);
+
+                if(Objects.equals(pessoaFisica.getRg(), rg))
+                    return pessoaFisica;
+            }
+
+        throw new PessoaNotFoundException();
+    }
+
     public ArrayList<Pessoa> getPessoas() {
         return pessoas;
     }
