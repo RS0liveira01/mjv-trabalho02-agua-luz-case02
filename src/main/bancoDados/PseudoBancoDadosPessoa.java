@@ -1,6 +1,6 @@
 package bancoDados;
 
-import errors.PessoaNotFoundException;
+import errors.*;
 import pessoa.Pessoa;
 import pessoa.PessoaFisica;
 import pessoa.PessoaJuridica;
@@ -73,6 +73,18 @@ public class PseudoBancoDadosPessoa {
             }
         }
     }
+
+    private void validarDuplicidadePessoaJuridica(PessoaJuridica novaPessoaJuridica) {
+        this.pessoas.forEach((pessoa) -> {
+            if (pessoa instanceof PessoaJuridica) {
+                PessoaJuridica pessoaFisica = (PessoaJuridica) pessoa;
+
+                if (Objects.equals(pessoaFisica.getCnpj(), novaPessoaJuridica.getCnpj()))
+                    throw new DuplicatedCnpjException();
+            }
+        }
+    }
+
     public ArrayList<Pessoa> getPessoas() {
         return this.pessoas;
     }
