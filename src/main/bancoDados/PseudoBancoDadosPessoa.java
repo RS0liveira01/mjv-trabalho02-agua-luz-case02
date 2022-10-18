@@ -3,6 +3,7 @@ package bancoDados;
 import errors.PessoaNotFoundException;
 import pessoa.Pessoa;
 import pessoa.PessoaFisica;
+import pessoa.PessoaJuridica;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -42,6 +43,18 @@ public class PseudoBancoDadosPessoa {
 
                 if(Objects.equals(pessoaFisica.getRg(), rg))
                     return pessoaFisica;
+            }
+
+        throw new PessoaNotFoundException();
+    }
+
+    public PessoaJuridica getPessoaFisicaPorCnpj(String cnpj) {
+        for(int i = 0; i < this.pessoas.size(); i++)
+            if(this.pessoas.get(i) instanceof PessoaJuridica) {
+                PessoaJuridica pessoaJuridica = (PessoaJuridica) this.pessoas.get(i);
+
+                if(Objects.equals(pessoaJuridica.getCnpj(), cnpj))
+                    return pessoaJuridica;
             }
 
         throw new PessoaNotFoundException();
