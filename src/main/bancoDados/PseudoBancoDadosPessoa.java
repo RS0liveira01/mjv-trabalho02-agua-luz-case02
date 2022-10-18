@@ -12,9 +12,9 @@ public class PseudoBancoDadosPessoa {
     ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 
     public void registrarPessoa(Pessoa novaPessoa) {
-        if (novaPessoa instanceof PessoaFisica) {
+        if(novaPessoa instanceof PessoaFisica) {
             this.validarDuplicidadePessoaFisica((PessoaFisica) novaPessoa);
-        } else if (novaPessoa instanceof PessoaJuridica) {
+        } else if(novaPessoa instanceof PessoaJuridica) {
             this.validarDuplicidadePessoaFisica((PessoaFisica) novaPessoa);
         } else {
             throw new UnsuportedPessoaImplementationException();
@@ -25,17 +25,17 @@ public class PseudoBancoDadosPessoa {
 
     public Pessoa getPessoaPorNome(String nome) {
         // Perguntar porque equals e não ==
-        for(int i = 0; i < this.pessoas.size(); i++)
-            if(Objects.equals(this.pessoas.get(i).getNome(), nome))
-                return this.pessoas.get(i);
+        for(Pessoa pessoa : this.pessoas)
+            if(Objects.equals(pessoa.getNome(), nome))
+                return pessoa;
 
         throw new PessoaNotFoundException();
     }
 
     public PessoaFisica getPessoaFisicaPorCpf(String cpf) {
-        for(int i = 0; i < this.pessoas.size(); i++)
-            if(this.pessoas.get(i) instanceof PessoaFisica) {
-                PessoaFisica pessoaFisica = (PessoaFisica) this.pessoas.get(i);
+        for(Pessoa pessoa : this.pessoas)
+            if(pessoa instanceof PessoaFisica) {
+                PessoaFisica pessoaFisica = (PessoaFisica) pessoa;
 
                 if(Objects.equals(pessoaFisica.getCpf(), cpf))
                     return pessoaFisica;
@@ -45,9 +45,9 @@ public class PseudoBancoDadosPessoa {
     }
 
     public PessoaFisica getPessoaFisicaPorRG(String rg) {
-        for(int i = 0; i < this.pessoas.size(); i++)
-            if(this.pessoas.get(i) instanceof PessoaFisica) {
-                PessoaFisica pessoaFisica = (PessoaFisica) this.pessoas.get(i);
+        for(Pessoa pessoa : this.pessoas)
+            if(pessoa instanceof PessoaFisica) {
+                PessoaFisica pessoaFisica = (PessoaFisica) pessoa;
 
                 if(Objects.equals(pessoaFisica.getRg(), rg))
                     return pessoaFisica;
@@ -57,9 +57,9 @@ public class PseudoBancoDadosPessoa {
     }
 
     public PessoaJuridica getPessoaFisicaPorCnpj(String cnpj) {
-        for(int i = 0; i < this.pessoas.size(); i++)
-            if(this.pessoas.get(i) instanceof PessoaJuridica) {
-                PessoaJuridica pessoaJuridica = (PessoaJuridica) this.pessoas.get(i);
+        for(Pessoa pessoa : this.pessoas)
+            if(pessoa instanceof PessoaJuridica) {
+                PessoaJuridica pessoaJuridica = (PessoaJuridica) pessoa;
 
                 if(Objects.equals(pessoaJuridica.getCnpj(), cnpj))
                     return pessoaJuridica;
@@ -70,13 +70,13 @@ public class PseudoBancoDadosPessoa {
 
     private void validarDuplicidadePessoaFisica(PessoaFisica novaPessoaFisica) {
         this.pessoas.forEach((pessoa) -> {
-            if (pessoa instanceof PessoaFisica) {
+            if(pessoa instanceof PessoaFisica) {
                 PessoaFisica pessoaFisica = (PessoaFisica) pessoa;
 
-                if (Objects.equals(pessoaFisica.getCpf(), novaPessoaFisica.getCpf()))
+                if(Objects.equals(pessoaFisica.getCpf(), novaPessoaFisica.getCpf()))
                     throw new DuplicatedCpfException();
 
-                if (Objects.equals(pessoaFisica.getRg(), novaPessoaFisica.getRg()))
+                if(Objects.equals(pessoaFisica.getRg(), novaPessoaFisica.getRg()))
                     throw new DuplicatedRgException();
             }
         }
@@ -84,10 +84,10 @@ public class PseudoBancoDadosPessoa {
 
     private void validarDuplicidadePessoaJuridica(PessoaJuridica novaPessoaJuridica) {
         this.pessoas.forEach((pessoa) -> {
-            if (pessoa instanceof PessoaJuridica) {
+            if(pessoa instanceof PessoaJuridica) {
                 PessoaJuridica pessoaFisica = (PessoaJuridica) pessoa;
 
-                if (Objects.equals(pessoaFisica.getCnpj(), novaPessoaJuridica.getCnpj()))
+                if(Objects.equals(pessoaFisica.getCnpj(), novaPessoaJuridica.getCnpj()))
                     throw new DuplicatedCnpjException();
             }
         }
