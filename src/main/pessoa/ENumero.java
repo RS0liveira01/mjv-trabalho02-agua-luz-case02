@@ -6,7 +6,7 @@ public class ENumero {
             Double.parseDouble(texto);
             return true;
         }
-        catch (Exception e) {
+        catch(Exception exception) {
             return false;
         }
     }
