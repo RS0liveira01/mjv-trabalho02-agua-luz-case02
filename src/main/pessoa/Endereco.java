@@ -1,5 +1,13 @@
 package pessoa;
 
+import errors.InvalidCepException;
+import errors.InvalidNumberException;
+import errors.InvalidPaisException;
+import errors.InvalidUfException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Endereco {
 
     private String logradouro;
@@ -16,19 +24,53 @@ public class Endereco {
     }
 
     private String validarNumero(String numero) {
-        return "a fazer...";
+
+        if (!ENumero.verificaString(numero)) {
+            throw new InvalidNumberException();
+        };
+
+        if (numero.length() > 6) {
+            throw new InvalidNumberException();
+        }
+        return numero;
     }
 
     private String validarCep(String cep) {
-        return "a fazer...";
+        if (!ENumero.verificaString(cep)) {
+            throw new InvalidCepException();
+        };
+
+        if (cep.length() > 8) {
+            throw new InvalidCepException();
+        }
+        return cep;
     }
 
     private String validarUf(String uf) {
-        return "a fazer...";
+
+        Pattern padrao = Pattern.compile("[a-zA-Z]*");
+        Matcher regex = padrao.matcher(uf);
+
+        if(!regex.matches()) {
+            throw new InvalidUfException();
+        }
+
+        if(uf.length() >2) {
+            throw new InvalidUfException();
+        }
+        return uf;
     }
 
+
     private PAIS validarPais(String pais) {
-        return PAIS.BR;
+
+        try {
+            PAIS paisValido = PAIS.valueOf(pais);
+            return paisValido;
+        } catch (IllegalArgumentException ex) {
+           throw new InvalidPaisException();
+        }
+
     }
 
     public String getLogradouro() {
