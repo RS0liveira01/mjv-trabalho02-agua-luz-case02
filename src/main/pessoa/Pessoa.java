@@ -15,11 +15,11 @@ public abstract class Pessoa {
         return "a fazer...";
     }
 
-    protected void registrarContrato(String[] dados){
+        public void registrarContrato(String[] dados){
         // A fazer...
     }
 
-    protected void registrarTelefone(String telefone) {
+    public void registrarTelefone(String telefone) {
         // A fazer...
     }
 
