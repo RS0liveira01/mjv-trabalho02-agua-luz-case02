@@ -12,16 +12,16 @@ import java.util.Objects;
 public class PseudoBancoDadosPessoa {
     ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 
-    public void registrarPessoa(Pessoa novaPessoa) {
-        if(novaPessoa instanceof PessoaFisica) {
-            this.validarDuplicidadePessoaFisica((PessoaFisica) novaPessoa);
-        } else if(novaPessoa instanceof PessoaJuridica) {
-            this.validarDuplicidadePessoaFisica((PessoaFisica) novaPessoa);
+    public void registrarPessoa(String[] dadosPessoa) {
+        if(dadosPessoa.length == 3) {
+            this.validarDuplicidadePessoaFisica(dadosPessoa);
+            this.pessoas.add(new PessoaFisica(dadosPessoa));
+        } else if(dadosPessoa.length == 2) {
+            this.validarDuplicidadePessoaJuridica(dadosPessoa);
+            this.pessoas.add(new PessoaJuridica(dadosPessoa));
         } else {
             throw new UnsuportedPessoaImplementationException();
         }
-
-        this.pessoas.add(novaPessoa);
     }
 
     public void registrarContrato(Pessoa pessoaContratante, String[] dadosContrato) {
@@ -83,26 +83,26 @@ public class PseudoBancoDadosPessoa {
         throw new PessoaNotFoundException();
     }
 
-    private void validarDuplicidadePessoaFisica(PessoaFisica novaPessoaFisica) {
+    private void validarDuplicidadePessoaFisica(String[] dadosPessoaFisica) {
         this.pessoas.forEach((pessoa) -> {
             if(pessoa instanceof PessoaFisica) {
                 PessoaFisica pessoaFisica = (PessoaFisica) pessoa;
 
-                if(Objects.equals(pessoaFisica.getCpf(), novaPessoaFisica.getCpf()))
+                if(Objects.equals(pessoaFisica.getCpf(), dadosPessoaFisica[0]))
                     throw new DuplicatedCpfException();
 
-                if(Objects.equals(pessoaFisica.getRg(), novaPessoaFisica.getRg()))
+                if(Objects.equals(pessoaFisica.getRg(), dadosPessoaFisica[1]))
                     throw new DuplicatedRgException();
             }
         });
     }
 
-    private void validarDuplicidadePessoaJuridica(PessoaJuridica novaPessoaJuridica) {
+    private void validarDuplicidadePessoaJuridica(String[] dadosPessoaJuridica) {
         this.pessoas.forEach((pessoa) -> {
             if(pessoa instanceof PessoaJuridica) {
-                PessoaJuridica pessoaFisica = (PessoaJuridica) pessoa;
+                PessoaJuridica pessoaJuridica = (PessoaJuridica) pessoa;
 
-                if(Objects.equals(pessoaFisica.getCnpj(), novaPessoaJuridica.getCnpj()))
+                if(Objects.equals(pessoaJuridica.getCnpj(), dadosPessoaJuridica[0]))
                     throw new DuplicatedCnpjException();
             }
         });
