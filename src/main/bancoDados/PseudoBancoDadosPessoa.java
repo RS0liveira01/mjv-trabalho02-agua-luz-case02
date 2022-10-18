@@ -79,7 +79,7 @@ public class PseudoBancoDadosPessoa {
                 if(Objects.equals(pessoaFisica.getRg(), novaPessoaFisica.getRg()))
                     throw new DuplicatedRgException();
             }
-        }
+        });
     }
 
     private void validarDuplicidadePessoaJuridica(PessoaJuridica novaPessoaJuridica) {
@@ -90,7 +90,7 @@ public class PseudoBancoDadosPessoa {
                 if(Objects.equals(pessoaFisica.getCnpj(), novaPessoaJuridica.getCnpj()))
                     throw new DuplicatedCnpjException();
             }
-        }
+        });
     }
 
     public ArrayList<Pessoa> getPessoas() {
