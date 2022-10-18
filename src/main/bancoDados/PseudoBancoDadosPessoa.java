@@ -1,7 +1,8 @@
 package bancoDados;
 
-import errors.PessoaNorFoundException;
+import errors.PessoaNotFoundException;
 import pessoa.Pessoa;
+import pessoa.PessoaFisica;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -19,7 +20,7 @@ public class PseudoBancoDadosPessoa {
             if(Objects.equals(this.pessoas.get(i).getNome(), nome))
                 return this.pessoas.get(i);
 
-        throw new PessoaNorFoundException();
+        throw new PessoaNotFoundException();
     }
 
         return this.pessoas.get(indicePesquisa);
