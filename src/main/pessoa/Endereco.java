@@ -38,7 +38,8 @@ public class Endereco {
         if (numero.length() > 6) {
             throw new InvalidNumberException();
         }
-        return numero;
+
+        return numero.replaceFirst("^0+(?!$)", "");
     }
 
     private String validarCep(String cep) {
