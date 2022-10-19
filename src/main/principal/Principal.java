@@ -102,17 +102,10 @@ public class Principal {
                             + " - "
                             + endereco.getUf()
                             + ", "
-                            + endereco.getPais()
+                            + endereco.getPais().getNome()
                     );
                     System.out.println(endereco.getComplemento());
-                    System.out.println(
-                            "CEP: "
-                            + endereco.getCep().substring(0, 2)
-                            + "."
-                            + endereco.getCep().substring(2,5)
-                            + "-"
-                            + endereco.getCep().substring(6)
-                    );
+                    System.out.println("CEP: " + endereco.getCep());
 
                     System.out.println(
                             "O cliente deve ser notificadp através de "

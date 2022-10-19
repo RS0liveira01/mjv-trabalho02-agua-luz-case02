@@ -58,7 +58,7 @@ public class Endereco {
                 cepPrimeiraSerie
                 + "."
                 + cepSegundaSerie
-                + "-"
+                + "."
                 + cepDigito
         );
 

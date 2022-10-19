@@ -1,8 +1,8 @@
 package pessoa;
 
 public enum TIPONOTIFICACAO {
-    SMS("SMS"),
-    WHATS("WhatsApp");
+    S("SMS"),
+    W("WhatsApp");
 
     private String tipo;
 

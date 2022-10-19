@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Contrato {
 
@@ -22,17 +23,16 @@ public class Contrato {
 
 	public Contrato(String[] dados) {
         this.endereco = new Endereco(Arrays.copyOfRange(dados, 0, 8));
-        this.protocolo = validarProtocolo(dados[7]);
+        this.protocolo = validarProtocolo(dados[8]);
         this.fusoHorario = FUSOHORARIO.valueOf(dados[7]);
-        this.dataHora = validarDataHora(dados[8], dados[9]);
-        this.tipoServico = TIPOSERVICO.valueOf(dados[10]);
-        this.tipoNotificacao = TIPONOTIFICACAO.valueOf(dados[12]);
+        this.dataHora = validarDataHora(dados[9], dados[10]);
+        this.tipoServico = TIPOSERVICO.valueOf(dados[11]);
+        this.tipoNotificacao = TIPONOTIFICACAO.valueOf(dados[13]);
     }
 
     private String validarProtocolo(String protocolo) {
-
         //validar se protocolo possui 7 digitos
-        if(protocolo.length() != 7) {
+        if(protocolo.length() != 10) {
             throw new InvalidProtocolException();
         }
 
@@ -45,27 +45,43 @@ public class Contrato {
     }
 
     private LocalDateTime validarDataHora(String data, String hora) {
-        String dia = data.substring(0, 2);
-        String mes = data.substring(2, 4);
-        String ano = data.substring(4);
+        String dia = data.substring(6);
+        String mes = data.substring(4, 6);
+        String ano = data.substring(0, 4);
         String horas = hora.substring(0, 2);
         String minutos = hora.substring(2);
 
-        String dataFormatada = (
-                dia
-                + "-"
-                + mes
-                + "-"
-                + ano
-                + " "
-                + horas
-                + ":"
-                + minutos
-        );
+        if(Objects.equals(this.fusoHorario.getGmt(), FUSOHORARIO.US)) {
+            String dataFormatada = (
+                    mes
+                    + "-"
+                    + dia
+                    + "-"
+                    + ano
+                    + " "
+                    + horas
+                    + ":"
+                    + minutos
+            );
+            DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            return LocalDateTime.parse(dataFormatada, formatador);
+        } else {
+            String dataFormatada = (
+                    dia
+                    + "-"
+                    + mes
+                    + "-"
+                    + ano
+                    + " "
+                    + horas
+                    + ":"
+                    + minutos
+            );
+            DateTimeFormatter formatador = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
 
-        return LocalDateTime.parse(dataFormatada, formatador);
+            return LocalDateTime.parse(dataFormatada, formatador);
+        }
     }
 
     public Endereco getEndereco() {

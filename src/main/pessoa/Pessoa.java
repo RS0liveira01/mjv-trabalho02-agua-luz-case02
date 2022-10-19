@@ -36,7 +36,7 @@ public abstract class Pessoa {
 	public void registrarContrato(String[] dados) {
 		this.registrarTelefone(dados[0]);
 
-		Contrato contrato = new Contrato (Arrays.copyOfRange(dados,1, 14));
+		Contrato contrato = new Contrato (Arrays.copyOfRange(dados,1, 15));
 		this.contratos.add(contrato);
 	}
 	public void registrarTelefone(String telefone) {
