@@ -1,37 +1,61 @@
 package pessoa;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import errors.InvalidNomeException;
+import pessoa.Telefone;
 
 public abstract class Pessoa {
-    private String nome;
-    private ArrayList<Telefone> telefones;
-    private ArrayList<Contrato> contratos;
+	private String nome;
+	private ArrayList<Telefone> telefones;
+	private ArrayList<Contrato> contratos;
 
-    protected Pessoa(String nome) {
-        this.nome = validarNome(nome);
-    }
+	protected Pessoa(String nome) {
+		this.nome = validarNome(nome);
+	}
 
-    private String validarNome(String nome) {
-        return "a fazer...";
-    }
+	private String validarNome(String nome) {
+		if(nome.isEmpty()){
+			throw new InvalidNomeException();
+		}
+		if (nome.length()> 36) {
+			throw new InvalidNomeException();
+		}
+		Pattern padrao = Pattern.compile("[a-zA-Z]*");
+		Matcher regex = padrao.matcher(nome);
+		if(!regex.matches()){
+			throw new InvalidNomeException();
+		}
+		return nome;
+	}
 
-        public void registrarContrato(String[] dados){
-        // A fazer...
-    }
 
-    public void registrarTelefone(String telefone) {
-        // A fazer...
-    }
+	public void registrarContrato(String[] dados) {
+		this.registrarTelefone(dados[0]);
+		Contrato contrato = new Contrato (Arrays.copyOfRange(dados,1, 14));
+		this.contratos.add(contrato);
+	}
+	public void registrarTelefone(String telefone) {
+		Telefone novoTelefone = new Telefone (telefone);
+		this.telefones.add(novoTelefone);
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public ArrayList<Telefone> getTelefones() {
-        return telefones;
-    }
+	public ArrayList<Telefone> getTelefones() {
+		return telefones;
+	}
 
-    public ArrayList<Contrato> getContratos() {
-        return contratos;
-    }
+	public ArrayList<Contrato> getContratos() {
+		return contratos;
+	}
 }

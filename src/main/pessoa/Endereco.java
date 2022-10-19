@@ -111,4 +111,36 @@ public class Endereco {
     public PAIS getPais() {
         return pais;
     }
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public void setPais(PAIS pais) {
+		this.pais = pais;
+	}
 }
