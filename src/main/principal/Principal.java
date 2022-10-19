@@ -1,7 +1,6 @@
 package principal;
 
 import bancoDados.PseudoBancoDadosPessoa;
-import errors.InvalidNomeException;
 import errors.UnsupportedPessoaImplementationException;
 import gereciarArquivos.LeitorArquivoPessoa;
 import pessoa.*;
