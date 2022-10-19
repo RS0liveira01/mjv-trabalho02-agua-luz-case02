@@ -42,14 +42,27 @@ public class Endereco {
     }
 
     private String validarCep(String cep) {
-        if (!ENumero.verificaString(cep)) {
+        if (!cep.matches("[0-9]+")) {
             throw new InvalidCepException();
         };
 
-        if (cep.length() > 8) {
+        if (cep.length() != 8) {
             throw new InvalidCepException();
         }
-        return cep;
+
+        String cepPrimeiraSerie = cep.substring(0, 2);
+        String cepSegundaSerie = cep.substring(2, 5);
+        String cepDigito = cep.substring(5);
+
+        String cepFormatado = (
+                cepPrimeiraSerie
+                + "."
+                + cepSegundaSerie
+                + "-"
+                + cepDigito
+        );
+
+        return cepFormatado;
     }
 
     private String validarUf(String uf) {
@@ -57,7 +70,7 @@ public class Endereco {
             throw new InvalidUfException();
         }
 
-        if(uf.length() > 2) {
+        if(uf.length() != 2) {
             throw new InvalidUfException();
         }
 

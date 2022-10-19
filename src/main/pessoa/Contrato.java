@@ -21,7 +21,7 @@ public class Contrato {
     private TIPONOTIFICACAO tipoNotificacao;
 
 	public Contrato(String[] dados) {
-        this.endereco = new Endereco(Arrays.copyOfRange(dados, 0, 7));
+        this.endereco = new Endereco(Arrays.copyOfRange(dados, 0, 8));
         this.protocolo = validarProtocolo(dados[7]);
         this.fusoHorario = FUSOHORARIO.valueOf(dados[7]);
         this.dataHora = validarDataHora(dados[8], dados[9]);
