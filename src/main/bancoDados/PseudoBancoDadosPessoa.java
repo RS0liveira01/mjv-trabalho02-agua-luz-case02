@@ -71,7 +71,7 @@ public class PseudoBancoDadosPessoa {
         throw new PessoaNotFoundException();
     }
 
-    public PessoaJuridica getPessoaFisicaPorCnpj(String cnpj) {
+    public PessoaJuridica getPessoaJuridicaPorCnpj(String cnpj) {
         for(Pessoa pessoa : this.pessoas)
             if(pessoa instanceof PessoaJuridica) {
                 PessoaJuridica pessoaJuridica = (PessoaJuridica) pessoa;
