@@ -4,6 +4,8 @@ import errors.InvalidCepException;
 import errors.InvalidNumberException;
 import errors.InvalidPaisException;
 import errors.InvalidUfException;
+import utils.ENumero;
+import utils.UtilString;
 
 public class Endereco {
 

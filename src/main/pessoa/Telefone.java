@@ -2,6 +2,7 @@ package pessoa;
 
 import errors.InvalidDddNumberException;
 import errors.InvalidPhoneNumberException;
+import utils.ENumero;
 
 public class Telefone {
     private String ddd;

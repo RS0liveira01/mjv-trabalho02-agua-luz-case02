@@ -1,4 +1,4 @@
-package pessoa;
+package utils;
 
 public class ENumero {
     public static Boolean verificaString (String texto) {

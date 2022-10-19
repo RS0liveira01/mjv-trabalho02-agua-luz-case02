@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import errors.InvalidNomeException;
+import utils.UtilString;
 
 public abstract class Pessoa {
 	private String nome;
