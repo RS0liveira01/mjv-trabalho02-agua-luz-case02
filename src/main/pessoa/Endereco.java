@@ -1,5 +1,12 @@
 package pessoa;
 
+import errors.InvalidCepException;
+import errors.InvalidNumberException;
+import errors.InvalidPaisException;
+import errors.InvalidUfException;
+import utils.ENumero;
+import utils.UtilString;
+
 public class Endereco {
 
     private String logradouro;
@@ -12,23 +19,60 @@ public class Endereco {
     private PAIS pais;
 
     protected Endereco(String[] dados) {
-        // a fazer...
+        this.logradouro = UtilString.tratarNominal(dados[0]);
+        this.numero = validarNumero(dados[1]);
+        this.complemento = dados[2];
+        this.bairro = UtilString.tratarNominal(dados[3]);
+        this.cidade = UtilString.tratarNominal(dados[4]);
+        this.uf = validarUf(dados[5]);
+        this.cep = validarCep(dados[6]);
+        this.pais = validarPais(dados[7]);
     }
 
     private String validarNumero(String numero) {
-        return "a fazer...";
+        if (!ENumero.verificaString(numero)) {
+            throw new InvalidNumberException();
+        };
+
+        if (numero.length() > 6) {
+            throw new InvalidNumberException();
+        }
+
+        return numero.replaceFirst("^0+(?!$)", "");
     }
 
     private String validarCep(String cep) {
-        return "a fazer...";
+        if (!ENumero.verificaString(cep)) {
+            throw new InvalidCepException();
+        };
+
+        if (cep.length() > 8) {
+            throw new InvalidCepException();
+        }
+        return cep;
     }
 
     private String validarUf(String uf) {
-        return "a fazer...";
+        if(!uf.matches("[a-zA-Z]*")) {
+            throw new InvalidUfException();
+        }
+
+        if(uf.length() > 2) {
+            throw new InvalidUfException();
+        }
+
+        return UtilString.tratarNominal(uf);
     }
 
+
     private PAIS validarPais(String pais) {
-        return PAIS.BR;
+        try {
+            PAIS paisValido = PAIS.valueOf(pais);
+            return paisValido;
+        } catch (IllegalArgumentException ex) {
+           throw new InvalidPaisException();
+        }
+
     }
 
     public String getLogradouro() {

@@ -21,7 +21,31 @@ public class Contrato {
     private TIPOSERVICO tipoServico;
     private TIPONOTIFICACAO tipoNotificacao;
 
-    protected Contrato(String[] dados) {
+    public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setProtocolo(String protocolo) {
+		this.protocolo = protocolo;
+	}
+
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public void setFusoHorario(FUSOHORARIO fusoHorario) {
+		this.fusoHorario = fusoHorario;
+	}
+
+	public void setTipoServico(TIPOSERVICO tipoServico) {
+		this.tipoServico = tipoServico;
+	}
+
+	public void setTipoNotificacao(TIPONOTIFICACAO tipoNotificacao) {
+		this.tipoNotificacao = tipoNotificacao;
+	}
+
+	public Contrato(String[] dados) {
         // a fazer...
     }
 

@@ -1,37 +1,58 @@
 package pessoa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import errors.InvalidNomeException;
+import utils.UtilString;
 
 public abstract class Pessoa {
-    private String nome;
-    private ArrayList<Telefone> telefones;
-    private ArrayList<Contrato> contratos;
+	private String nome;
+	private ArrayList<Telefone> telefones;
+	private ArrayList<Contrato> contratos;
 
-    protected Pessoa(String nome) {
-        this.nome = validarNome(nome);
-    }
+	protected Pessoa(String nome) {
+		this.nome = validarNome(nome);
+		this.telefones = new ArrayList<Telefone>();
+		this.contratos = new ArrayList<Contrato>();
+	}
 
-    private String validarNome(String nome) {
-        return "a fazer...";
-    }
+	private String validarNome(String nome) {
+		if(nome.isEmpty()){
+			throw new InvalidNomeException();
+		}
 
-        public void registrarContrato(String[] dados){
-        // A fazer...
-    }
+		if (nome.length() > 50) {
+			throw new InvalidNomeException();
+		}
 
-    public void registrarTelefone(String telefone) {
-        // A fazer...
-    }
+		if(!nome.matches("[a-zA-Z ]+")){
+			throw new InvalidNomeException();
+		}
 
-    public String getNome() {
-        return nome;
-    }
+		return UtilString.tratarNominal(nome);
+	}
 
-    public ArrayList<Telefone> getTelefones() {
-        return telefones;
-    }
+	public void registrarContrato(String[] dados) {
+		this.registrarTelefone(dados[0]);
 
-    public ArrayList<Contrato> getContratos() {
-        return contratos;
-    }
+		Contrato contrato = new Contrato (Arrays.copyOfRange(dados,1, 14));
+		this.contratos.add(contrato);
+	}
+	public void registrarTelefone(String telefone) {
+		Telefone novoTelefone = new Telefone (telefone);
+		this.telefones.add(novoTelefone);
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public ArrayList<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public ArrayList<Contrato> getContratos() {
+		return contratos;
+	}
 }

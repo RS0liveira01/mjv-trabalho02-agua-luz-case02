@@ -1,9 +1,8 @@
-//Bev
-
 package pessoa;
 
 import errors.InvalidDddNumberException;
 import errors.InvalidPhoneNumberException;
+import utils.ENumero;
 
 public class Telefone {
     private String ddd;
@@ -28,21 +27,36 @@ public class Telefone {
             throw new InvalidDddNumberException();
         }
 
-        return ddd;
+
+
+        return "(" + ddd + ")";
     }
 
     private String validarNumero(String numero) {
-        //Checagem de mais de 8 ou 9 dígitos
-        if((numero.length() != 8) && (numero.length() != 9)) {
-            throw new InvalidPhoneNumberException();
-        }
-
         //Checagem se o número só possui números
         if(!ENumero.verificaString(numero)) {
             throw new InvalidPhoneNumberException();
         }
 
-        return numero;
+        //Checagem de mais de 8 ou 9 dígitos e retorna o valro formatado
+        switch(numero.length()) {
+            case 9:
+                return (
+                        numero.substring(0, 5)
+                        + "-"
+                        + numero.substring(6)
+                );
+
+            case 8:
+                return (
+                        numero.substring(0, 4)
+                                + "-"
+                                + numero.substring(5)
+                );
+
+            default:
+                throw new InvalidPhoneNumberException();
+        }
     }
 
     public String getDdd() {
