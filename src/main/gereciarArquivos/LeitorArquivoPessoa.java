@@ -14,7 +14,6 @@ public class LeitorArquivoPessoa {
         BufferedReader bufferLeitor = Files.newBufferedReader(pathToFile);
 
         String line = bufferLeitor.readLine();
-        System.out.println(line);
 
         while(line != null) {
             infoContratos.add(line.split(";"));
