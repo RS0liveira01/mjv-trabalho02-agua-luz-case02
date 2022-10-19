@@ -1,16 +1,11 @@
 package pessoa;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.Arrays
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import errors.InvalidNomeException;
-import pessoa.Telefone;
 
 public abstract class Pessoa {
 	private String nome;
@@ -36,7 +31,7 @@ public abstract class Pessoa {
 			throw new InvalidNomeException();
 		}
 
-		return nome;
+		return UtilString.tratarNominal(nome);
 	}
 
 	public void registrarContrato(String[] dados) {
