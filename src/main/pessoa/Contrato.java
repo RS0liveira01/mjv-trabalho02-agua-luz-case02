@@ -1,9 +1,14 @@
 package pessoa;
 
+import errors.InvalidDateFormatException;
 import errors.InvalidProtocolException;
 import utils.ENumero;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 
 public class Contrato {
@@ -18,8 +23,8 @@ public class Contrato {
 	public Contrato(String[] dados) {
         this.endereco = new Endereco(Arrays.copyOfRange(dados, 0, 7));
         this.protocolo = validarProtocolo(dados[7]);
-        this.dataHora = validarDataHora(dados[8], dados[9]);
         this.fusoHorario = FUSOHORARIO.valueOf(dados[7]);
+        this.dataHora = validarDataHora(dados[8], dados[9]);
         this.tipoServico = TIPOSERVICO.valueOf(dados[10]);
         this.tipoNotificacao = TIPONOTIFICACAO.valueOf(dados[12]);
     }
@@ -40,25 +45,27 @@ public class Contrato {
     }
 
     private LocalDateTime validarDataHora(String data, String hora) {
-        /*
-        //validar se hora e minutos são válidos
+        String dia = data.substring(0, 2);
+        String mes = data.substring(2, 4);
+        String ano = data.substring(4);
+        String horas = hora.substring(0, 2);
+        String minutos = hora.substring(2);
 
-        //validar se o formato de data é valido
-        String strDate = String.valueOf(dataHora);
-        String dateFormat = "dd/MM/uuuu";
+        String dataFormatada = (
+                dia
+                + "-"
+                + mes
+                + "-"
+                + ano
+                + " "
+                + horas
+                + ":"
+                + minutos
+        );
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter
-                .ofPattern(dateFormat)
-                .withResolverStyle(ResolverStyle.STRICT);
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-        try {
-            LocalDate date = LocalDate.parse(strDate, dateTimeFormatter);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateFormatException();
-        }
-        */
-
-        return LocalDateTime.now();
+        return LocalDateTime.parse(dataFormatada, formatador);;
     }
 
     public Endereco getEndereco() {
