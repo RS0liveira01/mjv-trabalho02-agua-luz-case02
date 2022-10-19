@@ -20,7 +20,14 @@ public class Endereco {
     private PAIS pais;
 
     protected Endereco(String[] dados) {
-        // a fazer...
+        this.logradouro = dados[0];
+        this.numero = validarNumero(dados[1]);
+        this.complemento = dados[2];
+        this.bairro = dados[3];
+        this.cidade = dados[4];
+        this.uf = validarUf(dados[5]);
+        this.cep = validarCep(dados[6]);
+        this.pais = validarPais(dados[7]);
     }
 
     private String validarNumero(String numero) {
