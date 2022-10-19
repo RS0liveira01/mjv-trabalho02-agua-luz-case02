@@ -5,9 +5,6 @@ import errors.InvalidNumberException;
 import errors.InvalidPaisException;
 import errors.InvalidUfException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Endereco {
 
     private String logradouro;
@@ -54,10 +51,7 @@ public class Endereco {
     }
 
     private String validarUf(String uf) {
-        Pattern padrao = Pattern.compile("[a-zA-Z]*");
-        Matcher regex = padrao.matcher(uf);
-
-        if(!regex.matches()) {
+        if(!uf.matches("[a-zA-Z]*")) {
             throw new InvalidUfException();
         }
 
