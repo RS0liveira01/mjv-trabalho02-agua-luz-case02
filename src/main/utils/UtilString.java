@@ -13,14 +13,14 @@ public class UtilString {
             else
                 nominalFormatado.append(" " + parteNominal);
 
-        return nominalFormatado.toString().substring(2);
+        return nominalFormatado.substring(1);
     }
 
     private static String primeiraLetraParaMaiuscula(String palavra) {
         String palavraFormatada = palavra.substring(0, 1).toUpperCase();
 
         if(palavra.length() > 1)
-            palavraFormatada += palavra.substring(2);
+            palavraFormatada += palavra.substring(1);
 
         return palavraFormatada;
     }
