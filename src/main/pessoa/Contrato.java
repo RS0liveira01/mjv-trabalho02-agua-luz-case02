@@ -65,7 +65,7 @@ public class Contrato {
 
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-        return LocalDateTime.parse(dataFormatada, formatador);;
+        return LocalDateTime.parse(dataFormatada, formatador);
     }
 
     public Endereco getEndereco() {
