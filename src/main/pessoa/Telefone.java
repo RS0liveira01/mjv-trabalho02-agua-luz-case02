@@ -26,7 +26,9 @@ public class Telefone {
             throw new InvalidDddNumberException();
         }
 
-        return ddd;
+
+
+        return "(" + ddd + ")";
     }
 
     private String validarNumero(String numero) {
