@@ -44,21 +44,34 @@ public class PessoaFisica extends Pessoa {
             throw new InvalidRgException();
         }
 
-        if (rg.length() >8) {
-            throw new InvalidRgException();
-        }
-
-        if (rg.length() <8) {
-            throw new InvalidRgException();
-        }
-
         Pattern padrao = Pattern.compile("[0-9.--]*");
-        Matcher regex = padrao.matcher(cpf);
+        Matcher regex = padrao.matcher(rg);
         if (!regex.matches()) {
             throw new InvalidRgException();
         }
 
-        return rg;
+        switch(rg.length()) {
+            case 10:
+                String rgPrimeiraSerie = rg.substring(0, 2);
+                String rgSegundaSerie = rg.substring(2, 5);
+                String rgTerceiraSeria = rg.substring(6);
+
+                String rgFormatado = (
+                        rgPrimeiraSerie
+                        + "."
+                        + rgSegundaSerie
+                        + "."
+                        + rgTerceiraSeria
+                );
+
+                return rgFormatado;
+
+            case 7:
+                return rg;
+
+            default:
+                throw new InvalidRgException();
+        }
     }
 
     public String getCpf() { return cpf; }
