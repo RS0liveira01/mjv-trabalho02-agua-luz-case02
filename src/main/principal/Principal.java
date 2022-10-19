@@ -58,7 +58,7 @@ public class Principal {
                             + " do CPF "
                             + pessoaFisica.getCpf()
                             + " e RG "
-                            + pessoaFisica
+                            + pessoaFisica.getRg()
                             + " possui as seguintes informações:"
                     );
                 } else if(pessoa instanceof PessoaJuridica) {
@@ -72,16 +72,9 @@ public class Principal {
                 }
 
                 System.out.print("Telefone(s):");
-                for(Telefone telefone : pessoa.getTelefones()) {
-                    System.out.print(" (" + telefone.getDdd() + ") ");
+                for(Telefone telefone : pessoa.getTelefones())
+                    System.out.print(telefone.getDdd() + " " + telefone.getNumero());
 
-                    String numero = telefone.getNumero();
-                    if(numero.length() == 9) {
-                        System.out.print(numero.substring(0, 5) + "-" + numero.substring(6));
-                    } else {
-                        System.out.print(numero.substring(0, 4) + "-" + numero.substring(5));
-                    }
-                }
                 System.out.print("\n\n");
 
                 System.out.println("Contratos:");
