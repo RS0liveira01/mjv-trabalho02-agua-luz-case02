@@ -12,24 +12,29 @@ public class PessoaJuridica extends Pessoa {
 
     public PessoaJuridica(String[] dados) {
         super(dados[1]);
-        // A fazer...
+
+        this.cnpj = this.validarCnpj(dados[0]);
     }
 
     private String validarCnpj(String cnpj) {
         if (cnpj.isEmpty()) {
             throw new InvalidCnpjException();
         }
+
         if (cnpj.length() < 18) {
             throw new InvalidRgException();
         }
+
         if (cnpj.length() > 18) {
-        throw new InvalidRgException();
+            throw new InvalidRgException();
         }
+
         Pattern padrao = Pattern.compile("[0-9.-/-]*");
         Matcher regex = padrao.matcher(cnpj);
         if (!regex.matches()) {
             throw new InvalidRgException();
         }
+
         return cnpj;
     }
 
