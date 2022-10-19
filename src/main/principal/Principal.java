@@ -1,17 +1,25 @@
 package principal;
 
 import bancoDados.PseudoBancoDadosPessoa;
+import errors.InvalidNomeException;
 import errors.UnsupportedPessoaImplementationException;
 import gereciarArquivos.LeitorArquivoPessoa;
 import pessoa.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Principal {
     public static void main(String[] args) {
         PseudoBancoDadosPessoa bancoDados = new PseudoBancoDadosPessoa();
-        ArrayList<String[]> infoContratos = LeitorArquivoPessoa.lerArquivo("kkkk");
+        ArrayList<String[]> infoContratos;
+
+        try {
+            infoContratos = LeitorArquivoPessoa.lerArquivo("agua-luz-output/agua-luz-contratos.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         if(infoContratos.size() != 0) {
             for (String[] infoContrato : infoContratos) {
