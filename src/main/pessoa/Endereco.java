@@ -31,7 +31,6 @@ public class Endereco {
     }
 
     private String validarNumero(String numero) {
-
         if (!ENumero.verificaString(numero)) {
             throw new InvalidNumberException();
         };
@@ -54,7 +53,6 @@ public class Endereco {
     }
 
     private String validarUf(String uf) {
-
         Pattern padrao = Pattern.compile("[a-zA-Z]*");
         Matcher regex = padrao.matcher(uf);
 
@@ -62,15 +60,15 @@ public class Endereco {
             throw new InvalidUfException();
         }
 
-        if(uf.length() >2) {
+        if(uf.length() > 2) {
             throw new InvalidUfException();
         }
+
         return uf;
     }
 
 
     private PAIS validarPais(String pais) {
-
         try {
             PAIS paisValido = PAIS.valueOf(pais);
             return paisValido;
@@ -111,36 +109,4 @@ public class Endereco {
     public PAIS getPais() {
         return pais;
     }
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public void setPais(PAIS pais) {
-		this.pais = pais;
-	}
 }
