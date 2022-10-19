@@ -20,8 +20,8 @@ public class Contrato {
         this.protocolo = validarProtocolo(dados[7]);
         this.dataHora = validarDataHora(dados[8], dados[9]);
         this.fusoHorario = FUSOHORARIO.valueOf(dados[7]);
-        this.tipoServico = validarTipoServico(dados[10]);
-        this.tipoNotificacao = validarTipoNotificacao(dados[12]);
+        this.tipoServico = TIPOSERVICO.valueOf(dados[10]);
+        this.tipoNotificacao = TIPONOTIFICACAO.valueOf(dados[12]);
     }
 
     private String validarProtocolo(String protocolo) {
@@ -59,18 +59,6 @@ public class Contrato {
         */
 
         return LocalDateTime.now();
-    }
-
-    private FUSOHORARIO determinarFusoHorario(String pais) {
-        return FUSOHORARIO.valueOf(pais);
-    }
-
-    private TIPOSERVICO validarTipoServico(String tipoServico) {
-        return TIPOSERVICO.valueOf(tipoServico);
-    }
-
-    private TIPONOTIFICACAO validarTipoNotificacao(String tipoNotificacao) {
-        return TIPONOTIFICACAO.valueOf(tipoNotificacao);
     }
 
     public Endereco getEndereco() {
