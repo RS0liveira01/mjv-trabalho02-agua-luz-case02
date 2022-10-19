@@ -86,7 +86,7 @@ public class Principal {
                             + " no valor de R$ "
                             + contrato.getTipoServico().getValor()
                     );
-                    System.out.println("Serviço marcado para o horário: ");
+                    System.out.println("Serviço marcado para o horário: " + contrato.dataHoraToSting() + " GMT " + contrato.getFusoHorario());
 
                     Endereco endereco = contrato.getEndereco();
                     System.out.println("\nEndereço:");
