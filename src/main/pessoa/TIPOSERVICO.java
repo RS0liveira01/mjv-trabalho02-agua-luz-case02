@@ -21,18 +21,10 @@ public enum TIPOSERVICO {
     }
 
     public static TIPOSERVICO valueOfSigla(String sigla){
-        for(TIPOSERVICO ts : values()){
+        for(TIPOSERVICO ts : values()) {
             if(ts.getSigla().equals(sigla))
                 return ts;
         }
         throw new IllegalArgumentException("Não foi possível localizar um tipo serviço com a sigla " + sigla);
-    }
-
-    public static void main(String[] args) {
-        TIPOSERVICO byLabel = TIPOSERVICO.valueOf("AGUA");//padrao do java todo enum possue este método, mas tem que ser EXATO
-        System.out.println(byLabel.getValor());
-
-        TIPOSERVICO bySigla = TIPOSERVICO.valueOfSigla("L"); // customizando a busca por um atributo
-        System.out.println(bySigla.getValor());
     }
 }

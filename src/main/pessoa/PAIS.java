@@ -5,9 +5,13 @@ public enum PAIS {
     US("Estados Unidos"),
     FR("França");
 
-    public final String valor;
+    private String nome;
 
-    private PAIS(String valor) {
-        this.valor = valor;
+    private PAIS(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

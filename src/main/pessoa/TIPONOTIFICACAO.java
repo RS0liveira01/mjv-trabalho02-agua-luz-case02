@@ -4,9 +4,13 @@ public enum TIPONOTIFICACAO {
     SMS("SMS"),
     WHATS("WhatsApp");
 
-    public final String valor;
+    private String tipo;
 
-    private TIPONOTIFICACAO(String valor) {
-        this.valor = valor;
+    private TIPONOTIFICACAO(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 }
