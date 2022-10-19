@@ -5,9 +5,13 @@ public enum FUSOHORARIO {
     S("-4"),
     FR("+2");
 
-    public final String valor;
+    private String gmt;
 
-    private FUSOHORARIO(String valor) {
-        this.valor = valor;
+    private FUSOHORARIO(String gmt) {
+        this.gmt = gmt;
+    }
+
+    public String getGmt() {
+        return gmt;
     }
 }
