@@ -25,20 +25,23 @@ public abstract class Pessoa {
 		if(nome.isEmpty()){
 			throw new InvalidNomeException();
 		}
+
 		if (nome.length()> 36) {
 			throw new InvalidNomeException();
 		}
+
 		Pattern padrao = Pattern.compile("[a-zA-Z]*");
 		Matcher regex = padrao.matcher(nome);
 		if(!regex.matches()){
 			throw new InvalidNomeException();
 		}
+
 		return nome;
 	}
 
-
 	public void registrarContrato(String[] dados) {
 		this.registrarTelefone(dados[0]);
+
 		Contrato contrato = new Contrato (Arrays.copyOfRange(dados,1, 14));
 		this.contratos.add(contrato);
 	}
