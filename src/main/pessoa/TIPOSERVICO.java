@@ -1,8 +1,8 @@
 package pessoa;
 
 public enum TIPOSERVICO {
-    AGUA("A", 115.0),
-    LUZ("L", 127.0);
+    A("AGUA", 115.0),
+    L("LUZ", 127.0);
 
     private String sigla;
     private Double valor;

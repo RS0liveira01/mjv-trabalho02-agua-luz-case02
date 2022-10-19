@@ -1,16 +1,10 @@
 package pessoa;
 
-import errors.InvalidDateFormatException;
-import errors.InvalidPhoneNumberException;
 import errors.InvalidProtocolException;
+import utils.ENumero;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
-
-import static java.time.format.DateTimeFormatter.ofPattern;
+import java.util.Arrays;
 
 public class Contrato {
 
@@ -21,32 +15,13 @@ public class Contrato {
     private TIPOSERVICO tipoServico;
     private TIPONOTIFICACAO tipoNotificacao;
 
-    public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public void setProtocolo(String protocolo) {
-		this.protocolo = protocolo;
-	}
-
-	public void setDataHora(LocalDateTime dataHora) {
-		this.dataHora = dataHora;
-	}
-
-	public void setFusoHorario(FUSOHORARIO fusoHorario) {
-		this.fusoHorario = fusoHorario;
-	}
-
-	public void setTipoServico(TIPOSERVICO tipoServico) {
-		this.tipoServico = tipoServico;
-	}
-
-	public void setTipoNotificacao(TIPONOTIFICACAO tipoNotificacao) {
-		this.tipoNotificacao = tipoNotificacao;
-	}
-
 	public Contrato(String[] dados) {
-        // a fazer...
+        this.endereco = new Endereco(Arrays.copyOfRange(dados, 0, 7));
+        this.protocolo = validarProtocolo(dados[7]);
+        this.dataHora = validarDataHora(dados[8], dados[9]);
+        this.fusoHorario = FUSOHORARIO.valueOf(dados[7]);
+        this.tipoServico = validarTipoServico(dados[10]);
+        this.tipoNotificacao = validarTipoNotificacao(dados[12]);
     }
 
     private String validarProtocolo(String protocolo) {
@@ -64,7 +39,8 @@ public class Contrato {
         return protocolo;
     }
 
-    private LocalDateTime validarDataHora(String[] dataHora) {
+    private LocalDateTime validarDataHora(String data, String hora) {
+        /*
         //validar se hora e minutos são válidos
 
         //validar se o formato de data é valido
@@ -77,39 +53,25 @@ public class Contrato {
 
         try {
             LocalDate date = LocalDate.parse(strDate, dateTimeFormatter);
-
         } catch (DateTimeParseException e) {
             throw new InvalidDateFormatException();
-
         }
+        */
 
         return LocalDateTime.now();
     }
 
     private FUSOHORARIO determinarFusoHorario(String pais) {
-
-        private PAIS validarPais(String pais) {
-
-            try {
-                PAIS paisValido = PAIS.valueOf(pais);
-                return paisValido;
-            } catch (IllegalArgumentException ex) {
-                throw new InvalidPaisException();
-            }
-
-        }
-
-
-
-
-        return FUSOHORARIO.BR;
+        return FUSOHORARIO.valueOf(pais);
     }
 
     private TIPOSERVICO validarTipoServico(String tipoServico) {
-        return TIPOSERVICO.AGUA;
+        return TIPOSERVICO.valueOf(tipoServico);
     }
 
-    private TIPONOTIFICACAO validarTipoNotificacao(String tipoNotificacao) { return TIPONOTIFICACAO.SMS; }
+    private TIPONOTIFICACAO validarTipoNotificacao(String tipoNotificacao) {
+        return TIPONOTIFICACAO.valueOf(tipoNotificacao);
+    }
 
     public Endereco getEndereco() {
         return endereco;
