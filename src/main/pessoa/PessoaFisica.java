@@ -3,9 +3,6 @@ package pessoa;
 import errors.InvalidCpfException;
 import errors.InvalidRgException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class PessoaFisica extends Pessoa {
     public String cpf;
     public String rg;
@@ -26,9 +23,7 @@ public class PessoaFisica extends Pessoa {
             throw new InvalidCpfException();
         }
 
-        Pattern padrao = Pattern.compile("[0-9]*");
-        Matcher regex = padrao.matcher(cpf);
-        if (!regex.matches()) {
+        if (!cpf.matches("[0-9]*")) {
             throw new InvalidCpfException();
         }
 
@@ -55,9 +50,7 @@ public class PessoaFisica extends Pessoa {
             throw new InvalidRgException();
         }
 
-        Pattern padrao = Pattern.compile("[0-9.--]*");
-        Matcher regex = padrao.matcher(rg);
-        if (!regex.matches()) {
+        if (!rg.matches("[0-9-]*")) {
             throw new InvalidRgException();
         }
 
