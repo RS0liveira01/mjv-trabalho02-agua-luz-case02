@@ -35,7 +35,7 @@ public class Contrato {
 		this.tipoNotificacao = tipoNotificacao;
 	}
 
-	protected Contrato(String[] dados) {
+	public Contrato(String[] dados) {
         // a fazer...
     }
 
