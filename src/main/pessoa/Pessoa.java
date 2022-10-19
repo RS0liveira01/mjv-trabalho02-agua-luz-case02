@@ -2,8 +2,6 @@ package pessoa;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import errors.InvalidNomeException;
 
@@ -21,13 +19,11 @@ public abstract class Pessoa {
 			throw new InvalidNomeException();
 		}
 
-		if (nome.length()> 36) {
+		if (nome.length() > 50) {
 			throw new InvalidNomeException();
 		}
 
-		Pattern padrao = Pattern.compile("[a-zA-Z]*");
-		Matcher regex = padrao.matcher(nome);
-		if(!regex.matches()){
+		if(!nome.matches("[a-zA-Z ]+")){
 			throw new InvalidNomeException();
 		}
 
