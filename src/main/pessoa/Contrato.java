@@ -80,6 +80,10 @@ public class Contrato {
         return dataHora;
     }
 
+    public String dataHoraToSting() {
+        return dataHora.toString().replace("T", " ");
+    }
+
     public FUSOHORARIO getFusoHorario() {
         return fusoHorario;
     }
