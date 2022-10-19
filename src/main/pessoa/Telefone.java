@@ -1,5 +1,3 @@
-//Bev
-
 package pessoa;
 
 import errors.InvalidDddNumberException;
