@@ -22,21 +22,32 @@ public class PessoaFisica extends Pessoa {
             throw new InvalidCpfException();
         }
 
-        if (cpf.length() > 14) {
+        if (cpf.length() != 11) {
             throw new InvalidCpfException();
         }
 
-        if (cpf.length() < 14){
-            throw new InvalidCpfException();
-        }
-
-        Pattern padrao = Pattern.compile("[0-9.--]*");
+        Pattern padrao = Pattern.compile("[0-9]*");
         Matcher regex = padrao.matcher(cpf);
         if (!regex.matches()) {
             throw new InvalidCpfException();
         }
 
-        return cpf;
+        String cpfPrimeiraSerie = cpf.substring(0, 3);
+        String cpfSegundaSerie = cpf.substring(3, 6);
+        String cpfTerceiraSerie = cpf.substring(6, 9);
+        String cpfDigito = cpf.substring(10);
+
+        String cpfForamatado = (
+                cpfPrimeiraSerie
+                + "."
+                + cpfSegundaSerie
+                + "."
+                + cpfTerceiraSerie
+                + "-"
+                + cpfDigito
+        );
+
+        return cpfForamatado;
     }
 
     private String validarRg(String rg) {
