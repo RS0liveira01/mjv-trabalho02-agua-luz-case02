@@ -12,7 +12,7 @@ public class Telefone {
         String ddd = telefone.substring(0, 2);
         this.ddd = validarDdd(ddd);
 
-        String numero = telefone.substring(3);
+        String numero = telefone.substring(2);
         this.numero = validarNumero(numero);
     }
 
