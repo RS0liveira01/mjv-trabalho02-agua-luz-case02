@@ -12,15 +12,59 @@ import java.util.Objects;
 public class PseudoBancoDadosPessoa {
     ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 
-    public void registrarPessoa(String[] dadosPessoa) {
-        if(dadosPessoa.length == 3) {
-            this.validarDuplicidadePessoaFisica(dadosPessoa);
-            this.pessoas.add(new PessoaFisica(dadosPessoa));
-        } else if(dadosPessoa.length == 2) {
-            this.validarDuplicidadePessoaJuridica(dadosPessoa);
-            this.pessoas.add(new PessoaJuridica(dadosPessoa));
-        } else {
-            throw new UnsuportedPessoaImplementationException();
+    public Pessoa registrarPessoa(String[] dadosPessoa) {
+        switch(dadosPessoa.length) {
+            case 3:
+                try {
+                    this.validarDuplicidadePessoaFisica(dadosPessoa);
+
+                    PessoaFisica novaPessoaFisica = new PessoaFisica(dadosPessoa);
+                    this.pessoas.add(novaPessoaFisica);
+
+                    return novaPessoaFisica;
+                } catch(Exception exception) {
+                    if((exception instanceof DuplicatedCpfException) || (exception instanceof DuplicatedRgException)) {
+                        System.out.println("Cadastro existente detectado.");
+
+                        PessoaFisica cpfPessoa = getPessoaFisicaPorCpf(dadosPessoa[0]);
+                        PessoaFisica rgPessoa = getPessoaFisicaPorRG(dadosPessoa[1]);
+
+                        if((!Objects.equals(cpfPessoa, rgPessoa)) || (!Objects.equals(cpfPessoa.getNome(), dadosPessoa[0]))) {
+                            throw new IncoherentDataException();
+                        }
+
+                        return cpfPessoa;
+                    }
+
+                    throw exception;
+                }
+
+            case 2:
+                try {
+                    this.validarDuplicidadePessoaJuridica(dadosPessoa);
+
+                    PessoaJuridica novaPessoaJuridica = new PessoaJuridica(dadosPessoa);
+                    this.pessoas.add(novaPessoaJuridica);
+
+                    return novaPessoaJuridica;
+                } catch(Exception exception) {
+                    if(exception instanceof DuplicatedCnpjException) {
+                        System.out.println("Cadastro existente detectado.");
+
+                        PessoaJuridica cnpjPessoa = getPessoaJuridicaPorCnpj(dadosPessoa[0]);
+
+                        if(!Objects.equals(cnpjPessoa.getNome(), dadosPessoa[0])) {
+                            throw new IncoherentDataException();
+                        }
+
+                        return cnpjPessoa;
+                    }
+
+                    throw exception;
+                }
+
+            default:
+                throw new UnsupportedPessoaImplementationException();
         }
     }
 
@@ -71,7 +115,7 @@ public class PseudoBancoDadosPessoa {
         throw new PessoaNotFoundException();
     }
 
-    public PessoaJuridica getPessoaFisicaPorCnpj(String cnpj) {
+    public PessoaJuridica getPessoaJuridicaPorCnpj(String cnpj) {
         for(Pessoa pessoa : this.pessoas)
             if(pessoa instanceof PessoaJuridica) {
                 PessoaJuridica pessoaJuridica = (PessoaJuridica) pessoa;
