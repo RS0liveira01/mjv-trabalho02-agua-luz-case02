@@ -36,7 +36,7 @@ public class Contrato {
             throw new InvalidProtocolException();
         }
 
-        return protocolo;
+        return protocolo.replaceFirst("^0+(?!$)", "");
     }
 
     private LocalDateTime validarDataHora(String data, String hora) {
