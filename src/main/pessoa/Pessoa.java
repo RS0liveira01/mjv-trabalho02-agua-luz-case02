@@ -13,7 +13,7 @@ public abstract class Pessoa {
 	protected Pessoa(String nome) {
 		this.nome = validarNome(nome);
 		this.telefones = new ArrayList<Telefone>();
-		this.contratos = new ArrayList<Contrato>()
+		this.contratos = new ArrayList<Contrato>();
 	}
 
 	private String validarNome(String nome) {
