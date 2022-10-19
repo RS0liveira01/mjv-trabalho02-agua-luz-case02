@@ -33,8 +33,8 @@ public class PessoaFisica extends Pessoa {
         }
 
         String cpfPrimeiraSerie = cpf.substring(0, 3);
-        String cpfSegundaSerie = cpf.substring(3, 6);
-        String cpfTerceiraSerie = cpf.substring(6, 9);
+        String cpfSegundaSerie = cpf.substring(4, 6);
+        String cpfTerceiraSerie = cpf.substring(7, 9);
         String cpfDigito = cpf.substring(10);
 
         String cpfForamatado = (
@@ -64,7 +64,7 @@ public class PessoaFisica extends Pessoa {
         switch(rg.length()) {
             case 10:
                 String rgPrimeiraSerie = rg.substring(0, 2);
-                String rgSegundaSerie = rg.substring(2, 5);
+                String rgSegundaSerie = rg.substring(3, 5);
                 String rgTerceiraSeria = rg.substring(6);
 
                 String rgFormatado = (

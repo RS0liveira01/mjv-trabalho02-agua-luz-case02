@@ -21,7 +21,7 @@ public class PessoaJuridica extends Pessoa {
             throw new InvalidCnpjException();
         }
 
-        if (cnpj.length() != 16) {
+        if (cnpj.length() != 14) {
             throw new InvalidRgException();
         }
 
@@ -32,9 +32,9 @@ public class PessoaJuridica extends Pessoa {
         }
 
         String cnpjPrimeiraSerie = cnpj.substring(0, 2);
-        String cnpjSegundaSerie = cnpj.substring(2, 5);
-        String cnpjTerceiraSerie = cnpj.substring(5, 8);
-        String cnpjPosBarra = cnpj.substring(8, 12);
+        String cnpjSegundaSerie = cnpj.substring(3, 5);
+        String cnpjTerceiraSerie = cnpj.substring(6, 8);
+        String cnpjPosBarra = cnpj.substring(9, 12);
         String cnpjDigito = cnpj.substring(13);
 
         String cnpjFormatado = (
